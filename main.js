@@ -1,7 +1,7 @@
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 import * as satellite from 'https://cdn.jsdelivr.net/npm/satellite.js@4.1.1/dist/satellite.esm.js';
-import { WINDY_API_KEY, SAMPLE_SATS, N2YO_API_KEY } from '../config.js';
+import { WINDY_API_KEY, SAMPLE_SATS, N2YO_API_KEY } from './config.js';
 
 // === GLOBALS ===
 let scene, camera, renderer, controls;
