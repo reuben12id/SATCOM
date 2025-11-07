@@ -291,3 +291,4 @@ document.addEventListener('keypress', e => {
 // Attach login button handler (avoid relying on inline onclick which can fire before module binds)
 const loginBtn = document.querySelector('.login-btn');
 if (loginBtn) loginBtn.addEventListener('click', authenticate);
+
