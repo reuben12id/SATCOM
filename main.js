@@ -1,3 +1,4 @@
+console.log('MAIN.JS LOADED - VERSION 20251108-FINAL');
 // CACHE BUST: v9.8.7-fix-three-import-20251108
 // THREE.js — FULL CDN URL (required for GitHub Pages)
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
@@ -295,6 +296,7 @@ document.addEventListener('keypress', e => {
 // Attach login button handler (avoid relying on inline onclick which can fire before module binds)
 const loginBtn = document.querySelector('.login-btn');
 if (loginBtn) loginBtn.addEventListener('click', authenticate);
+
 
 
 
