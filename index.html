@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SATCOM COMMAND CENTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen">
+        <div class="login-container">
+            <h1 class="login-title">SATCOM COMMAND</h1>
+            <input type="text" class="login-input" placeholder="OPERATOR ID" id="username" />
+            <input type="password" class="login-input" placeholder="CLEARANCE CODE" id="password" />
+            <button class="login-btn" onclick="authenticate()">ACCESS SYSTEM</button>
+            <p style="margin-top: 1rem; font-size: 0.7rem; color: #555;">CLASSIFIED ACCESS ONLY</p>
+        </div>
+    </div>
+
+    <!-- MAIN COMMAND CENTER -->
+    <div id="command-center">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="logo">SATCOM // GLOBAL TRACKING ARRAY</div>
+            <div class="tab-container">
+                <div class="tab active" data-view="satellite">SATELLITE TRACKING</div>
+                <div class="tab" data-view="camera">GLOBAL CAMERA FEED</div>
+            </div>
+        </div>
+
+        <!-- HUD Overlays -->
+        <div class="corner-accent tl"></div>
+        <div class="corner-accent tr"></div>
+        <div class="corner-accent bl"></div>
+        <div class="corner-accent br"></div>
+        <div class="scanline"></div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Globe View -->
+            <div class="globe-container" id="satellite-view">
+                <canvas id="globe-canvas"></canvas>
+            </div>
+
+            <!-- Camera Map View -->
+            <div id="camera-viewer">
+                <div id="camera-map"></div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar" id="satellite-sidebar">
+                <h3 class="panel-title">ACTIVE CONSTELLATIONS</h3>
+                <div class="filter-group">
+                    <span class="filter-label">SHOW BY OPERATOR</span>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item"><input type="checkbox" checked> Starlink</label>
+                        <label class="checkbox-item"><input type="checkbox" checked> OneWeb</label>
+                        <label class="checkbox-item"><input type="checkbox" checked> Iridium</label>
+                        <label class="checkbox-item"><input type="checkbox"> GPS</label>
+                        <label class="checkbox-item"><input type="checkbox"> Galileo</label>
+                        <label class="checkbox-item"><input type="checkbox"> Military</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">ORBITAL REGIME</span>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item"><input type="checkbox" checked> LEO</label>
+                        <label class="checkbox-item"><input type="checkbox"> MEO</label>
+                        <label class="checkbox-item"><input type="checkbox"> GEO</label>
+                    </div>
+                </div>
+                <h3 class="panel-title" style="margin-top: 1.5rem;">LIVE ASSETS</h3>
+                <ul class="sat-list" id="sat-list"></ul>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-item"><div class="status-dot"></div> SYSTEM ONLINE</div>
+            <div class="status-item"><div class="status-dot"></div> <span id="sat-count">0</span> SATELLITES TRACKED</div>
+            <div class="status-item"><div class="status-dot warning"></div> 3 ANOMALIES DETECTED</div>
+            <div class="status-item"><div class="status-dot"></div> TLE EPOCH: <span id="tle-epoch"></span> UTC</div>
+        </div>
+    </div>
+
+    <!-- Satellite Info Panel -->
+    <div class="info-panel" id="sat-info-panel">
+        <div class="info-header">
+            <div class="info-title" id="info-sat-name">SATELLITE DATA</div>
+            <button class="close-btn" onclick="closeInfoPanel()">X</button>
+        </div>
+        <div class="info-body" id="info-body"></div>
+    </div>
+
+    <!-- ES MODULES -->
+    <script type="module" src="./scripts/main.js"></script>
+
+    <!-- Leaflet (non-module) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</body>
+</html>
