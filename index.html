@@ -97,6 +97,16 @@
     </div>
 
     <!-- ES MODULES -->
+    <!-- 1) Expose a safe non-module placeholder before the module loads. This prevents
+         an inline onclick or early event from throwing if the module fails to execute. -->
+    <script>
+        // Will be overwritten by main.js – safe placeholder
+        window.authenticate = function () {
+            console.warn('authenticate placeholder – module not loaded yet');
+        };
+    </script>
+
+    <!-- 2) MAIN MODULE (with corrected satellite.js import inside main.js) -->
     <script type="module" src="./main.js"></script>
 
     <!-- Leaflet (non-module) -->
