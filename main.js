@@ -1,9 +1,12 @@
+// THREE.js — FULL CDN URL (required for GitHub Pages)
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
-// Use the jsDelivr ESM bundle for satellite.js (stable path that exists on CDN)
-import * as satellite from 'https://cdn.jsdelivr.net/npm/satellite.js@4.1.4/+esm';
-import { WINDY_API_KEY, SAMPLE_SATS, N2YO_API_KEY } from './config.js';
 
+// satellite.js — CORRECT ESM via jsDelivr
+import * as satellite from 'https://cdn.jsdelivr.net/npm/satellite.js@4.1.4/+esm';
+
+// Your config
+import { WINDY_API_KEY, SAMPLE_SATS, N2YO_API_KEY } from './config.js';
 // === GLOBALS ===
 let scene, camera, renderer, controls;
 let wireframe;
@@ -291,4 +294,5 @@ document.addEventListener('keypress', e => {
 // Attach login button handler (avoid relying on inline onclick which can fire before module binds)
 const loginBtn = document.querySelector('.login-btn');
 if (loginBtn) loginBtn.addEventListener('click', authenticate);
+
 
